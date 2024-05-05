@@ -1,5 +1,5 @@
 import { createServer } from 'node:http';
-import { writeFile } from 'node:fs/promises';
+import { writeFile } from 'node:fs';
 import { Buffer } from 'node:buffer';
 
 const hostname = 'localhost';
@@ -20,23 +20,24 @@ const server = createServer((req, res) => {
 		res.write('</body>\n');
 		res.write('</html>\n');
 		return res.end();
-	} 
+	}
 	if (url === '/message' && req.method === 'POST') {
 		let body = [];
 
 		req.on('data', (chunk) => {
 			body.push(chunk);
 		})
-		req.on('end', () => {
+		return req.on('end', () => {
 			const parsedBody = Buffer.concat(body).toString();
 			const message = parsedBody.split('=')[1];
-			console.log(message);
-			writeFile('message.txt', message);
+			
+			writeFile('message.txt', message, (err) => {
+				if (err) throw err;
+				res.statusCode = 302;
+				res.setHeader('Location', '/');
+				return res.end();
+			});
 		})
-
-		res.statusCode = 302;
-		res.setHeader('Location', '/');
-		return res.end();
 	}
 
 	res.write('<!DOCTYPE html>\n');
