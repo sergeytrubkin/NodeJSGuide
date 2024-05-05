@@ -1,0 +1,24 @@
+{
+  "name": "nodejs-guide",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "test",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sergeytrubkin/NodeJSGuide.git"
+  },
+  "author": "Sergey Trubkin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sergeytrubkin/NodeJSGuide/issues"
+  },
+  "homepage": "https://github.com/sergeytrubkin/NodeJSGuide#readme",
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
