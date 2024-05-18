@@ -1,3 +1,6 @@
+import { writeFile } from 'node:fs/promises';
+import { Buffer } from 'node:buffer';
+
 export const requestHandler = (req, res) => {
 	const { url, method } = req;
 
@@ -37,8 +40,11 @@ export const requestHandler = (req, res) => {
 		return req.on('end', () => {
 			const formatData = Buffer.concat(body);
 			const username = formatData.toString().split('=')[1]
-
 			console.log(username);
+			
+			writeFile('username.txt', username, (err) => {
+				if (err) throw err;
+			});
 
 			res.statusCode = 302;
 			res.setHeader('Location', '/');
