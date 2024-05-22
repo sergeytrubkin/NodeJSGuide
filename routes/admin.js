@@ -1,15 +1,19 @@
+import { fileURLToPath } from 'url';
+import path, { dirname } from 'path';
 import express from 'express';
 import bodyParser from 'body-parser';
 
 const router = express.Router();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 router.use(bodyParser.urlencoded({ extended: false }));
 
 router.get('/add-product', (req, res, next) => {
-	res.send('<form action="/product" method="POST"><input type="text" name="message"><button type="submit">Send</button></form>')
+	res.sendFile(path.join(__dirname, '../', 'views', 'add-product.html'));
 })
 
-router.post('/product', (req, res, next) => {
+router.post('/add-product', (req, res, next) => {
 	console.log(req.body);
 	res.redirect('/');
 })

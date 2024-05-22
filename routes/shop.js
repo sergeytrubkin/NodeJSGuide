@@ -1,9 +1,13 @@
+import { fileURLToPath } from 'url';
+import path, { dirname } from 'path';
 import express from 'express';
 
 const router = express.Router();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 router.get('/',(req, res, next) => {
-	res.send('<h1>This is a home page!</h1>')
+	res.sendFile(path.join(__dirname, '../', 'views', 'shop.html'));
 	console.log('In the middleware');
 })
 
