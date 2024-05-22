@@ -20,5 +20,9 @@
   "homepage": "https://github.com/sergeytrubkin/NodeJSGuide#readme",
   "devDependencies": {
     "nodemon": "^3.1.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.19.2"
   }
 }
